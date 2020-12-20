@@ -4,7 +4,7 @@ files:
   - source: /index.html
     destination: /var/www/html/
 hooks:
-  Application_Restart:
+  Application_start:
     - location: servicescripts/start_service
       timeout: 300
       runas: root
