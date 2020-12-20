@@ -1,0 +1,10 @@
+version: 0.0
+os: linux
+files:
+  - source: /index.html
+    destination: /var/www/html/
+hooks:
+  Application_Restart:
+    - location: servicescripts/start_service
+      timeout: 300
+      runas: root
