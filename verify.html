@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-signin-client_id"
+    content="952635760547-m433c51fic0jjq02thcmlsut10gjjt15.apps.googleusercontent.com">
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+  <title>Omni Global - Verify</title>
+  <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+  <script
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDTA6pssoGd_BaNHu0fp7jAZ9N1xcfgCk8&callback=initMap&libraries=&v=weekly"
+    defer
+  ></script>
+
+  <style>
+
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+    #map {
+      height: 100%;
+    }
+
+    /* Optional: Makes the sample page fill the window. */
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .demo-width-class {
+      width: 100px;
+      margin-right: 20px;
+    }
+
+    .fw-width {
+      width: 100%;
+
+    }
+
+    .signup-card {
+      width: 450px;
+      padding-top: 40px;
+    }
+
+    .signup-card-header {
+      margin: 20px 0;
+      text-align: center;
+
+    }
+
+    .signup-card-header h3 {
+      font-weight: bold;
+    }
+
+    .btn-submit-lg {
+      margin: 20px 0;
+      height: 56px;
+    }
+
+    .terms-and-cond {
+      margin-top: 15px;
+    }
+
+    @media all and (max-width: 450px) { 
+      .signup-card {
+        width: 80%;
+        margin: 0 auto;
+        padding: 15px;
+      }
+    }
+
+
+
+  </style>
+</head>
+
+<body class="mdc-typography"  sstyle="background: rgba(0, 0, 0, 0) url(img/geometry.png) repeat scroll 0% 0%;">
+
+  <div id="map"></div>
+
+  <article>
+
+    <!-- sign up -->
+    <div class="mdc-card signup-card">
+
+      <div id="loader-wrapper">
+        <div id="loader"></div>
+      </div>
+
+      <div class="signup-card-header">
+        <p class="mdc-typography--body1">We have sent a verification code to +<span class="phone"></span> </p>
+        <a role="button" id="btn-change-cc">Use email instead?</a>
+      </div>
+
+      <form action="/home.html" class="signup-form">
+
+        <label class="mdc-text-field fw mdc-text-field--outlined mdc-text-field--with-leading-icon">
+          <span class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">security</span>
+          <input type="text" class="mdc-text-field__input" name="security-code" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" aria-labelledby="security-code" maxlength="6" required>
+          <span class="mdc-notched-outline">
+            <span class="mdc-notched-outline__leading"></span>
+            <span class="mdc-notched-outline__notch">
+              <span class="mdc-floating-label" id="security-code">Security Code</span>
+            </span>
+            <span class="mdc-notched-outline__trailing"></span>
+          </span>
+        </label>
+
+        <div class="mdc-card validation-card email">
+          <h4>Email must be in the format:</h4>
+          <p id="em"> <span class="material-icons">close</span> email@example.com</p>
+        
+        </div>
+        
+
+        <button class="mdc-button mdc-button--raised btn-submit-lg" type="submit">
+          <div class="mdc-button__ripple"></div>
+          <span class="mdc-button__label">Verify</span>
+        </button>
+
+      </form>
+
+    </div>
+
+    <div class="mdc-dialog mdc-dialog--open signup-card" style="left: unset;">
+      <div class="mdc-dialog__container">
+        <div class="mdc-dialog__surface signup-card"
+          style=" width: 450px;"
+          role="alertdialog"
+          aria-modal="true"
+          aria-labelledby="my-dialog-title"
+          aria-describedby="my-dialog-content">
+          <div id="loader-wrapper">
+            <div id="loader"></div>
+          </div>
+          <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+          <div class="mdc-dialog__title" id="my-dialog-title">
+            <p>We have sent a verification code to +<span class="phone"></span></p>
+            <a href="">use email instead?</a>
+          </div>
+          <div class="mdc-dialog__content" id="my-dialog-content">
+            <form action="/home.html" class="signup-form">
+
+              <label class="mdc-text-field fw mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                <span class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">security</span>
+                <input type="text" class="mdc-text-field__input" name="security-code" onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))" aria-labelledby="security-code" maxlength="6" required>
+                <span class="mdc-notched-outline">
+                  <span class="mdc-notched-outline__leading"></span>
+                  <span class="mdc-notched-outline__notch">
+                    <span class="mdc-floating-label" id="security-code">Security Code</span>
+                  </span>
+                  <span class="mdc-notched-outline__trailing"></span>
+                </span>
+              </label>
+      
+              <div class="mdc-card validation-card email">
+                <h4>Email must be in the format:</h4>
+                <p id="em"> <span class="material-icons">close</span> email@example.com</p>
+              
+              </div>
+              
+      
+              <button class="mdc-button mdc-button--raised btn-submit-lg" type="submit">
+                <div class="mdc-button__ripple"></div>
+                <span class="mdc-button__label">Verify</span>
+              </button>
+      
+            </form>
+          </div>
+          <!-- <div class="mdc-dialog__actions">
+            <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="close">
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">Cancel</span>
+            </button>
+            <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="accept">
+              <div class="mdc-button__ripple"></div>
+              <span class="mdc-button__label">OK</span>
+            </button>
+          </div> -->
+        </div>
+      </div>
+      <div class="mdc-dialog__scrim"></div>
+    </div>
+
+  </article>
+
+  <!-- <script src="https://apis.google.com/js/platform.js" async defer></script> -->
+  <script src="js/signup.js"></script>
+  <script src="script.js"></script>
+
+
+  <script>
+
+    const PHONE = sessionStorage.getItem('phone');
+    const EMAIL = sessionStorage.getItem('email');
+
+    document.querySelector('.phone').textContent = PHONE;
+
+    let map;
+
+    function initMap() {
+      map = new google.maps.Map(document.getElementById("map"), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8,
+      });
+    }
+
+    const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
+
+    document.querySelector('#btn-change-cc').addEventListener('click', () => {
+      document.querySelector('#btn-change-cc').textContent = "Use telephone instead?";
+    })
+
+  </script>
+
+
+
+</body>
+
+</html>

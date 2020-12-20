@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Omni Global</title>
+    <meta name="description" content="Lorem, ipsum dolor sit amet consectetur adipisicing elit. Soluta, optio!">
+    <link href="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet"> 
+    <link rel="stylesheet" href="css/intlTelInput.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .mdc-dialog__surface {
+            width: 450px !important;
+            /* left: unset; */
+        }
+
+        .mdc-form-field {
+            width: 100%;
+        }
+
+        .validation-card {
+            position: absolute;
+            bottom: 225px;
+            width: 250px;
+            padding: 15px;
+            display: none;
+        }
+
+        .validation-card p {
+        padding: 5px 0;
+        display: flex;
+        align-items: center;
+        }
+
+        .validation-card .material-icons {
+        background-color: red;
+            border-radius: 50%;
+            font-size: unset;
+            padding: 2px;
+            color: #fff;
+            margin-right: 5px;
+        }
+
+        .validation-card.email {
+        bottom: 300px;
+        }
+
+        .terms-and-cond label {
+            margin-bottom: 0;
+        }
+
+        label {
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .btn-submit-lg {
+            margin: 10px 0;
+            height: 36px;
+            width: 100%;
+        }
+
+        .terms-and-cond {
+            margin-top: 15px;
+            }
+
+        #fname, #lname, #phone, .terms-and-cond {
+            display: none;
+        }
+
+    </style>
+
+</head>
+<body>
+
+    <div class="mdc-dialog mdc-dialog--open">
+        <div class="mdc-dialog__container">
+          <div class="mdc-dialog__surface"
+            role="alertdialog"
+            aria-modal="true"
+            aria-labelledby="my-dialog-title"
+            aria-describedby="my-dialog-content">
+            <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+            <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+           -->Get Started<!--
+         --></h2>
+            <div class="mdc-dialog__content" id="my-dialog-content">
+              
+                <form method="POST" action="connect.php" class="signup-form">
+
+
+
+                    <label style="margin-top: 5px;" id="fname" class="mdc-text-field fw mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                      <span class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">account_circle</span>
+                      <input type="text" disabled class="mdc-text-field__input" name="fname" aria-labelledby="fname" required>
+                      <span class="mdc-notched-outline">
+                        <span class="mdc-notched-outline__leading"></span>
+                        <span class="mdc-notched-outline__notch">
+                          <span class="mdc-floating-label" id="fname">First Name</span>
+                        </span>
+                        <span class="mdc-notched-outline__trailing"></span>
+                      </span>
+                    </label>
+
+                    <label style="margin-top: 5px;"  id="lname" class="mdc-text-field fw mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                        <span class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">account_circle</span>
+                        <input type="text" disabled class="mdc-text-field__input" name="lname" aria-labelledby="lname" required>
+                        <span class="mdc-notched-outline">
+                          <span class="mdc-notched-outline__leading"></span>
+                          <span class="mdc-notched-outline__notch">
+                            <span class="mdc-floating-label" id="lname">Last Name</span>
+                          </span>
+                          <span class="mdc-notched-outline__trailing"></span>
+                        </span>
+                    </label>  
+                    
+                    <div class="mdc-card validation-card email">
+                        <h4>Email must be in the format:</h4>
+                        <p id="em"> <span class="material-icons">close</span> email@example.com</p>
+                      
+                    </div>
+                      
+                    <label class="mdc-text-field fw mdc-text-field--outlined mdc-text-field--with-leading-icon">
+                    <span class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">email</span>
+                    <input type="email" class="mdc-text-field__input" name="email" aria-labelledby="email-id" required>
+                    <span class="mdc-notched-outline">
+                        <span class="mdc-notched-outline__leading"></span>
+                        <span class="mdc-notched-outline__notch">
+                        <span class="mdc-floating-label" id="email-id">Email</span>
+                        </span>
+                        <span class="mdc-notched-outline__trailing"></span>
+                    </span>
+                    </label>
+
+                    <div class="mdc-card validation-card pwd">
+                        <h4>Password must contain:</h4>
+                        <p id="letter"> <span class="material-icons">close</span> <b>A lowercase </b> letter</p>
+                        <p id="capital"> <span class="material-icons">close</span> <b>A capital(uppercase) </b> letter</p>
+                        <p id="number"> <span class="material-icons">close</span> <b>A number</b></p>
+                        <p id="len"> <span class="material-icons">close</span> <b>At least 8 characters</b></p>
+                    </div>
+
+                    <label
+                        class="mdc-text-field fw mdc-text-field--outlined mdc-text-field--with-leading-icon mdc-text-field--with-trailing-icon">
+                        <span class="material-icons mdc-text-field__icon mdc-text-field__icon--leading">lock</span>
+                        <input class="mdc-text-field__input" type="password" name="password" aria-labelledby="pwd" id="pwd" minlength="8"
+                        required>
+
+                        <i class="material-icons mdc-text-field__icon mdc-text-field__icon--trailing" tabindex="0"
+                        role="button">visibility</i>
+                    
+                        <span class="mdc-notched-outline">
+                        <span class="mdc-notched-outline__leading"></span>
+                        <span class="mdc-notched-outline__notch">
+                            <span class="mdc-floating-label" id="pwd">Password</span>
+                        </span>
+                        <span class="mdc-notched-outline__trailing"></span>
+                        </span>
+                    
+                    </label>
+      
+      
+                    <input type="tel" disabled class=""
+                      onkeypress="return (event.charCode !=8 && event.charCode ==0 || (event.charCode >= 48 && event.charCode <= 57))"
+                      id="phone">
+            
+                    <div class="mdc-form-field terms-and-cond">
+                      <div class="mdc-checkbox">
+                        <input type="checkbox" disabled class="mdc-checkbox__native-control" id="checkbox-tc" required />
+                        <div class="mdc-checkbox__background">
+                          <svg class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+                            <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59" />
+                          </svg>
+                          <div class="mdc-checkbox__mixedmark"></div>
+                        </div>
+                        <div class="mdc-checkbox__ripple"></div>
+                      </div>
+                      <label for="checkbox-1">I accept the Terms & Conditions</label>
+                    </div>
+            
+            
+                    <button class="mdc-button mdc-button--raised btn-submit-lg" type="submit" id="btn-register">
+                      <div class="mdc-button__ripple"></div>
+                      <span class="mdc-button__label">Sign In</span>
+                    </button>
+            
+                </form>
+
+            </div>
+          </div>
+        </div>
+        <div class="mdc-dialog__scrim"></div>
+      </div>
+
+    <script src="js/intlTelInput.js"></script>
+    
+
+    <script>
+        const dialog = new mdc.dialog.MDCDialog(document.querySelector('.mdc-dialog'));
+
+        [].forEach.call(document.querySelectorAll('.mdc-text-field'), function(el) {
+            mdc.textField.MDCTextField.attachTo(el);
+        });
+        
+
+        const checkbox = new mdc.checkbox.MDCCheckbox(document.querySelector('.mdc-checkbox'));
+        const formField = new mdc.formField.MDCFormField(document.querySelector('.mdc-form-field'));
+        formField.input = checkbox;
+
+        [].forEach.call(document.querySelectorAll('.mdc-button'), function (el) {
+          mdc.ripple.MDCRipple.attachTo(el);
+        });
+
+        let phoneInput = document.querySelector("#phone");
+        if (phoneInput.style.display == 'block') {
+            window.intlTelInput(phoneInput, {
+                // any initialisation options go here
+                utilsScript: "js/utils.js?1585994360633"
+            });
+        }
+        
+        let emails = ['stue@omniglobal.com', 'av@omniglobal.com']
+
+        const FORM = document.querySelector('form');
+
+
+        const SUBMITBTN = FORM.querySelector('button[type=submit]');
+        const EMAILINPUT = FORM.querySelector('input[type=email]');
+        const FNAME = FORM.querySelector('input[name=fname]');
+        const LNAME = FORM.querySelector('input[name=lname]');
+        const PASSWORD = FORM.querySelector('input[type=password]');
+        const PHONE = FORM.querySelector('input[type=tel]');
+        const CHBOX = FORM.querySelector('input[type=checkbox]');
+
+        const LNAMEL = document.querySelector('#lname');
+        const FNAMEL = document.querySelector('#fname');
+        const CHBOXL = document.querySelector('.terms-and-cond');
+
+
+        EMAILINPUT.addEventListener('blur', () => {
+            // check if input is valid
+
+            // check if user is in database
+            let emailId = EMAILINPUT.value;
+            if(!emails.includes(emails)) {
+                SUBMITBTN.querySelector('span').textContent = 'sign up';
+                FNAMEL.id = '';
+                FNAME.removeAttribute('disabled');
+                LNAMEL.id = '';
+                LNAME.removeAttribute('disabled');
+                PHONE.style.display = 'block';
+                PHONE.removeAttribute('disabled');
+                CHBOXL.style.display = 'block';
+                CHBOX.removeAttribute('disabled');
+            }
+
+            
+        })
+
+
+        FORM.addEventListener('submit', (e) => {
+
+            e.preventDefault();
+
+            console.log('sub');
+
+            // check if registration or login
+
+
+
+            let formData = new FormData(FORM);
+
+            console.log(formData.get('Email'));
+
+            FORM.reset();
+        })
+
+        const REGISTER = (email, password, fname, lname, code, phone) => {
+            fetch('connect.php', {
+                method: 'POST',
+                body: JSON.stringify({
+                    Email: email,
+                    FName: fname,
+                    LName: lname,
+                    Phone_AreaCode: code,
+                    Phone: phoneInput,
+                    Password: password
+                }),
+                headers: { 'Content-type': 'application/json; charset=UTF-8' }
+            }).then(response => {
+                if(response.ok) {
+                    return response.json();
+                }
+                return Promise.reject(response);
+            }).then(data => {
+                console.log(data)
+                if(data.statusCode == 200) {
+                    location.href = "home.html";	
+                }
+            }).catch(error => console.warn('something went wrong ', error))
+        }
+
+        const LOGIN = (email, password) => {
+            fetch('connect.php', {
+                method: 'POST',
+                body: JSON.stringify({
+                    Email: email,
+                    Password: password
+                }),
+                headers: { 'Content-type': 'application/json; charset=UTF-8' }
+            }).then(response => {
+                if(response.ok) {
+                    return response.json();
+                }
+                return Promise.reject(response);
+            }).then(data => {
+                console.log(data)
+                if(data.statusCode == 200) {
+                    location.href = "home.html";	
+                } else {
+                    console.log('wrong email or password');
+                }
+            }).catch(error => console.warn('something went wrong ', error))
+        }
+
+        const CHECKEMAIL = (email) => {
+            // check if user is in database
+            fetch('checkemail.php', {
+                method: 'POST',
+                body: JSON.stringify({ Email: email, }),
+                headers: { 'Content-type': 'application/json; charset=UTF-8' }
+            }).then(response => {
+                if(response.ok) {
+                    return response.json();
+                }
+                return Promise.reject(response);
+            }).then(data => {
+                console.log(data);
+
+                // if user is not in database, show other fields
+                if(data.statusCode !== 201) {
+
+                    SUBMITBTN.querySelector('span').textContent = 'sign up';
+                    FNAMEL.style.display = 'block';
+                    FNAME.removeAttribute('disabled');
+                    LNAMEL.style.display = 'block';
+                    LNAME.removeAttribute('disabled');
+                    PHONE.style.display = 'block';
+                    PHONE.removeAttribute('disabled');
+                    CHBOXL.style.display = 'block';
+                    CHBOX.removeAttribute('disabled');
+                }
+
+            }).catch(error => console.warn('something went wrong ', error))
+        }
+
+
+    </script>
+    
+</body>
+</html>
